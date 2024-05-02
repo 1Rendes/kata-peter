@@ -1,4 +1,3 @@
-// index.test.js
 const makeCorrectString = require("./index");
 
 test("Test makeCorrectString function", () => {
