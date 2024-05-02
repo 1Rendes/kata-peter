@@ -7,9 +7,19 @@ function makeCorrectString(inputString, allowedWords) {
   let words = inputString.split(" ");
   const filteredWords = words.filter((word) => word !== "");
   const outputArray = [];
+  const punctObj = {};
+
   let outputString = "";
   for (let word of filteredWords) {
-    if (!allowedWords.includes(word)) {
+    const wordWithoutPunctiation =
+      word.endsWith("!") ||
+      word.endsWith(".") ||
+      word.endsWith(",") ||
+      word.endsWith("?")
+        ? word.substring(0, word.length - 1)
+        : word;
+    console.log(wordWithoutPunctiation);
+    if (!allowedWords.includes(wordWithoutPunctiation)) {
       const number =
         word.endsWith("!") ||
         word.endsWith(".") ||
