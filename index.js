@@ -1,7 +1,15 @@
 const exp = require("constants");
 
 // const { log } = require("console");
-makeCorrectString("Hello! How are you? Fine.", ["Fine", "How"]);
+
+function checkPunct(word) {
+  return (
+    word.endsWith("!") ||
+    word.endsWith(".") ||
+    word.endsWith(",") ||
+    word.endsWith("?")
+  );
+}
 
 function makeCorrectString(inputString, allowedWords) {
   let words = inputString.split(" ");
@@ -11,22 +19,12 @@ function makeCorrectString(inputString, allowedWords) {
 
   let outputString = "";
   for (let word of filteredWords) {
-    const wordWithoutPunctiation =
-      word.endsWith("!") ||
-      word.endsWith(".") ||
-      word.endsWith(",") ||
-      word.endsWith("?")
-        ? word.substring(0, word.length - 1)
-        : word;
+    const wordWithoutPunctiation = checkPunct(word)
+      ? word.substring(0, word.length - 1)
+      : word;
     console.log(wordWithoutPunctiation);
     if (!allowedWords.includes(wordWithoutPunctiation)) {
-      const number =
-        word.endsWith("!") ||
-        word.endsWith(".") ||
-        word.endsWith(",") ||
-        word.endsWith("?")
-          ? 2
-          : 1;
+      const number = checkPunct(word) ? 2 : 1;
       let chars = word.split("");
       for (let i = 1; i < word.length - number; i++) {
         chars.splice(i, 1, "*");

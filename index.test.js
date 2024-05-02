@@ -12,3 +12,9 @@ test("Test makeCorrectString function", () => {
 test("Test makeCorrectString function", () => {
   expect(makeCorrectString("Hello! ", ["Hello"])).toBe("Hello!");
 });
+
+test("Test makeCorrectString function", () => {
+  expect(
+    makeCorrectString("Hello! How are you? Fine.", ["Hello", "Fine"])
+  ).toBe("Hello! H*w a*e y*u? Fine.");
+});
